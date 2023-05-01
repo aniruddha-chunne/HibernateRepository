@@ -17,7 +17,7 @@ public class Item
         this.name = name;
     }
 
-    @OneToOne( cascade = CascadeType.ALL, mappedBy = "item")
-    private Customer customer;
+//    @OneToOne( cascade = CascadeType.ALL, mappedBy = "item")
+//    private Customer customer;
 
 }

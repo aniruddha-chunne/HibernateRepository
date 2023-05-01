@@ -3,6 +3,9 @@ package com.hibernate.entity;
 import com.hibernate.entity.*;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table
 public class Customer
@@ -17,19 +20,15 @@ public class Customer
         this.name = name;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "fk_item")
-    @JoinTable(name= "customer_item",
-            joinColumns = {@JoinColumn(name ="customer_Id")},
-            inverseJoinColumns = {@JoinColumn(name ="item_Id")} )
-    private Item item;
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Item> item  = new ArrayList<>();
+//
+//
+//    public List<Item> getItem() {
+//        return item;
+//    }
+//
+//    public void setItem(List<Item> item) {
+//        this.item = item;
+//    }
 }
