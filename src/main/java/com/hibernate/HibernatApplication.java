@@ -2,8 +2,11 @@ package com.hibernate;
 
 import com.hibernate.Repository.CustomerRepository;
 import com.hibernate.Repository.ItemRepository;
+import com.hibernate.Repository.StudentAddressRepository;
 import com.hibernate.Repository.StudentRepository;
+import com.hibernate.entity.Address;
 import com.hibernate.entity.Student;
+import com.hibernate.entity.StudentAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +20,9 @@ public class HibernatApplication implements CommandLineRunner
 
 	@Autowired
 	private StudentRepository studentRepository;
+
+	@Autowired
+	private StudentAddressRepository studentAddressRepository;
 
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -61,13 +67,31 @@ public class HibernatApplication implements CommandLineRunner
 //		student.setLaptop(laptop);
 //		Student save = studentRepository.save(student);
 
-		Student student = studentRepository.findById(12).get();
-
-		System.out.println(student.getLaptop().getBrand());
-
-
+//		Student student = studentRepository.findById(12).get();
+//
+//		System.out.println(student.getLaptop().getBrand());
 
 
+
+
+//		One to many
+
+		StudentAddress studentAddress = new StudentAddress();
+
+		studentAddress.setId(301);
+		studentAddress.setName("OnetoMamy");
+		studentAddress.setAbout("checking relation");
+
+		Address address = new Address(351, "501", "nagpur", "india");
+		Address address2 = new Address(352, "502", "nagpur2", "india2");
+
+		studentAddress.getAddressList().add(address);
+		studentAddress.getAddressList().add(address2);
+
+		address.setStudentAddress(studentAddress);
+		address2.setStudentAddress(studentAddress);
+
+		studentAddressRepository.save(studentAddress);
 
 
 	}
